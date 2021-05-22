@@ -1,0 +1,9 @@
+**/*.o
+**/*.rej
+**/config.h
+**/*.orig
+**/*.diff
+st/st
+dmenu/dmenu
+slstatus/slstatus
+dwm/dwm
