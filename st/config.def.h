@@ -5,7 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
+#ifdef LAPTOP
+static char *font = "Liberation Mono:pixelsize=19:antialias=true:autohint=true";
+#elif DESKTOP
 static char *font = "Liberation Mono:pixelsize=23:antialias=true:autohint=true";
+#endif
+
 static int borderpx = 2;
 
 /*

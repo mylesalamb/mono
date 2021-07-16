@@ -19,8 +19,7 @@ config.h:
 	cp config.def.h config.h
 
 .c.o:
-	$(CC) $(STCFLAGS) -c $<
-
+	$(CC) $(STCFLAGS) ${ST_DEFINES} -c $< 
 st.o: config.h st.h win.h
 x.o: arg.h config.h st.h win.h
 

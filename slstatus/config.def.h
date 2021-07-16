@@ -63,9 +63,20 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+#ifdef LAPTOP
+static const struct arg args[] = {
+	/* function format          argument */
+	{cpu_perc,      " CPU %s% | ",          NULL},
+	{ram_used,      "RAM %s | ",            NULL},
+        {battery_perc,  "Battery %s ",         "BAT0"},
+        {battery_perc,  "%s | ",               "BAT1"},
+	{ datetime,     "%s",                   "%F %T" },
+};
+#elif DESKTOP
 static const struct arg args[] = {
 	/* function format          argument */
 	{cpu_perc, " CPU %s% | ", NULL},
 	{ram_used, "RAM %s | ", NULL},
 	{ datetime, "%s",           "%F %T" },
 };
+#endif
