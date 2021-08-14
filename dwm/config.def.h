@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
+#include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -58,13 +58,17 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-// idk what key to bind this to
-static const char *scrotcmd[] = { "scrot", "-e", "xclip -selection clipboard -t image/png -i \%f", NULL};
+static const char *scrotcmd[] = { "scrot", "-z", "-e", "xclip -selection clipboard -t image/png -i $f", NULL};
+static const char *brightcmd_up[] = { "bwrapper", "up", NULL };
+static const char *brightcmd_down[] = { "bwrapper", "down", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+        { 0,                            XK_Print,  spawn,          {.v = scrotcmd } },
+        { 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightcmd_up}},
+        { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightcmd_down}},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -95,6 +99,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
+        #ifdef LAPTOP
+        #elif DESKTOP
+        #endif
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 

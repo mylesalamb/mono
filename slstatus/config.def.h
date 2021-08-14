@@ -68,8 +68,8 @@ static const struct arg args[] = {
 	/* function format          argument */
 	{cpu_perc,      " CPU %s% | ",          NULL},
 	{ram_used,      "RAM %s | ",            NULL},
-        {battery_perc,  "Battery %s ",         "BAT0"},
-        {battery_perc,  "%s | ",               "BAT1"},
+        {battery_perc,  "Battery %s%% ",         "BAT0"},
+        {battery_perc,  "%s%% | ",               "BAT1"},
 	{ datetime,     "%s",                   "%F %T" },
 };
 #elif DESKTOP
